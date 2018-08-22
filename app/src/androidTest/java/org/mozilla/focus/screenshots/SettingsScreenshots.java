@@ -5,6 +5,7 @@
 package org.mozilla.focus.screenshots;
 
 import android.content.Context;
+import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.Espresso;
@@ -72,6 +73,7 @@ public class SettingsScreenshots extends ScreenshotTest {
 
     @Test
     public void takeScreenShotsOfSettings() throws Exception {
+        SystemClock.sleep(5000);
         openSettings();
 
         Screengrab.screenshot("Settings_View_Top");
@@ -166,15 +168,14 @@ public class SettingsScreenshots extends ScreenshotTest {
         Screengrab.screenshot("Autocomplete_Add_Custom_URL_Dialog");
         onView(withId(R.id.save))
                 .perform(click());
-        device.waitForIdle();
-        Screengrab.screenshot("Autocomplete_Add_Custom_URL_Error_Popup");
+       Screengrab.screenshot("Autocomplete_Add_Custom_URL_Error_Popup");
 
         onView(withId(R.id.domainView))
                 .perform(replaceText("screenshot.com"), closeSoftKeyboard());
         onView(withId(R.id.save))
                 .perform(click());
+        SystemClock.sleep(500);
         Screengrab.screenshot("Autocomplete_Add_Custom_URL_Saved_Popup");
-        device.waitForIdle();
         onView(withText(addCustomURLAction))
                 .check(matches(isDisplayed()));
 
@@ -200,13 +201,6 @@ public class SettingsScreenshots extends ScreenshotTest {
                 .check(matches(isDisplayed()));
         Espresso.pressBack();
         Espresso.pressBack();
-
-        /*
-        assertTrue(TestHelper.settingsHeading.waitForExists(waitingTime));
-        UiScrollable settingsView = new UiScrollable(new UiSelector().scrollable(true));
-        settingsView.scrollToEnd(4);
-        Screengrab.screenshot("Settings_View_Bottom");
-        */
 
         // "Mozilla" submenu
         onView(withText(R.string.preference_category_mozilla))
@@ -252,7 +246,7 @@ public class SettingsScreenshots extends ScreenshotTest {
         Screengrab.screenshot("Privacy_Security_Submenu_top");
         UiScrollable settingsView = new UiScrollable(new UiSelector().scrollable(true));
         if (settingsView.exists()) {        // On tablet, this will not be found
-            settingsView.scrollToEnd(4);
+            settingsView.scrollToEnd(5);
             Screengrab.screenshot("Privacy_Security_Submenu_bottom");
         }
     }

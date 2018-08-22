@@ -16,12 +16,12 @@ import org.junit.rules.TestRule;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 import org.mozilla.focus.activity.MainActivity;
-import org.mozilla.focus.helpers.HostScreencapScreenshotStrategy;
 import org.mozilla.focus.helpers.MainActivityFirstrunTestRule;
 import org.mozilla.focus.helpers.SessionLoadedIdlingResource;
 import org.mozilla.focus.utils.AppConstants;
 
 import tools.fastlane.screengrab.Screengrab;
+import tools.fastlane.screengrab.UiAutomatorScreenshotStrategy;
 
 /**
  * Base class for tests that take screenshots.
